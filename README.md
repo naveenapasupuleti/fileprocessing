@@ -16,53 +16,31 @@ We need to install
 
 We need to import following libraries.
 - pip3 install pandas
-- pip3 install xlsxwriter
 - pip3 install openpyxl
 - pip3 install writer
 
 **Testing the package:**
 
-Create a file to test the package:
+        Run "Python3" in terminal
 
-**Example:**
+**Import the file processing package methods in terminal:**
 
-   "PackageTestingFile.py"
+       from fileprocessing_package import fileprocess, JsonConversion
 
-**Import the file processing package in your file:**
+**Add the below command to test the methods**
 
-       from FileProcessingPackage import ReadWriteFile
+If you are Reading/Writting a File:
 
-**Add the below code to test the package**
+Example for CSV File:
 
-If you are Reading a File pass this parameters:
+        fileprocess("filepath","r",{})
+        fileprocess("filepath","w",[28,'mouri','vizag'])
 
-        ReadWriteFile.fileprocess(file_extension, "r", dict)
+If you are converting CSV to Json:
 
-**Example:**
+        JsonConversion("filepath","r","Destinationfilepath")
 
-  if you are reading csv file follow this code example:
-     
-        from FileProcessingPackage import ReadWriteFile
-        file_extension ='filename.csv' 
-        dict = [28,'mouritech','hyderabad'] 
-        ReadWriteFile.fileprocess(file_extension, "r", dict)
 
-if you are Writing a file pass this parameters:
-
-        ReadWriteFile.fileprocess(file_extension, "w", dict)
-
-**Example:**
-
-  if you are writing csv file follow this code example:
-
-        from FileProcessingPackage import ReadWriteFile
-        file_extension ='filename.csv' 
-        dict = [28,'mouritech','hyderabad'] 
-        ReadWriteFile.fileprocess(file_extension, "w", dict)
-
-**Run your file:**
-
-     "python(filename).py"
 
 
 
