@@ -26,6 +26,7 @@ We need to import following libraries.
 **Import the file processing package methods in terminal:**
 
        from fileprocessing_package import FileProcess
+       file_process = FileProcess()
 
 **Add the below command to test the methods**
 
@@ -33,20 +34,21 @@ If you are Reading/Writting a File:
 
 Example for CSV File:
 
-        FileProcess.read("filepath")
-        FileProcess.write("filepath","a+",[28,'mouri','vizag'])
+        file_process.read("filepath")
+        file_process.write("filepath","a+",[28,'mouri','vizag'])
 
 Example for XLSX file:
 
-        FileProcess.read("filepath")
-        FileProcess.write("filepath","a+",[('vzg',22,45),('hyd',21,56),('mouri',20,60)])
+        file_process.read("filepath")
+        file_process.write("filepath","a+",[('vzg',22,45),('hyd',21,56),('mouri',20,60)])
 
-Example for XLSX file:
+Example for JSON file:
 
-        FileProcess.read("filepath")
-        FileProcess.write("filepath","a+",{"ORIGIN_COUNTRY_NAME":"United States","DEST_COUNTRY_NAME":"Poland","count":62})
+        file_process.read("filepath")
+        file_process.write("filepath","a+",{"ORIGIN_COUNTRY_NAME":"United States","DEST_COUNTRY_NAME":"Poland","count":62})
 
 
 If you are converting CSV to Json:
 
-        FileProcess.json_conversion("filepath","Destinationfilepath")
+        file_process.json_conversion("filepath","Destinationfilepath")
+

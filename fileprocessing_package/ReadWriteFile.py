@@ -1,14 +1,10 @@
-import json
 import pandas as pd
-from csv import writer
 from openpyxl import load_workbook
 from .helper import append_list_as_row, append_list_as_row_json
 
 
 class FileProcess(object):
-
-
-    def read(file_path):
+    def read(self, file_path):
         try:
             if file_path.endswith('.csv'):
                 df = pd.read_csv(file_path)
@@ -19,10 +15,12 @@ class FileProcess(object):
             elif file_path.endswith(".xlsx"):
                 df = pd.read_excel(file_path)
                 return df
-        except:
-            print("Couldn't read file")
+            else:
+                print("File extension is required")
+        except Exception as e:
+            print("Couldn't read file and Exception is: ", e)
 
-    def write(file_path, mode="", data=None):
+    def write(self, file_path, mode="", data=None):
         try:
             if file_path.endswith('.csv'):
                 append_list_as_row(file_path, mode, data)
@@ -35,14 +33,17 @@ class FileProcess(object):
                     page.append(info)
                 wb.save(filename=file_path)
                 return wb
-        except:
-            print("Unable to fetch the data")
+            else:
+                print("File extension is required")
+        except Exception as e:
+            print("Unable to fetch the data and Exception is: ", e)
 
-    def json_conversion(file_path, csv_to_json):
+    def json_conversion(self, file_path, csv_to_json):
         try:
             if file_path.endswith('.csv'):
                 df = pd.read_csv(file_path)
                 df.to_json(csv_to_json)
                 return df
-        except:
-            print("Unable to read the data")
+        except Exception as e:
+            print("Unable to read the data and Exception is: ", e)
+
