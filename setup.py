@@ -5,16 +5,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="mouritech-file_processing_package", # Replace with your own username
+    name="mouritech.file_processing",
     version="0.0.2",
     author="naveenap",
     author_email="pasupuletinaveena98@gmail.com",
-    description="A small example package",
+    description="FileProcessing package",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/naveenapasupuleti/fileprocessing",
     packages=setuptools.find_packages(),
-    install_requires=['pandas','writer','json','openpyxl'],
+    install_requires=['pandas','openpyxl'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
