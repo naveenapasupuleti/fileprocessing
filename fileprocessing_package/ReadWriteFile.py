@@ -1,64 +1,48 @@
 import json
 import pandas as pd
 from csv import writer
-import xlsxwriter
-import openpyxl
 from openpyxl import load_workbook
-
-def fileprocess(fileExt,method,dict):
-    if fileExt.endswith('.csv') and method == "r":
-        df = pd.read_csv(fileExt)
-        print("main csv read")
-        return df
-
-    elif fileExt.endswith('.csv') and method == "w":
-        def append_list_as_row(file_name, list_of_elem):
-            print(list_of_elem)
-            with open(file_name, 'a+', newline='') as write_obj:
-                csv_writer = writer(write_obj)
-                csv_writer.writerow(list_of_elem)
-                write_obj.close()
-        append_list_as_row(fileExt, dict)
-
-    elif fileExt.endswith('.json') and method == "r":
-        df = pd.read_json(fileExt, lines=True)
-        return df
-
-    elif fileExt.endswith(".json") and method=="w":
-        def append_list_as_row(file_name, json_data):
-            with open(fileExt, "r+") as file:
-                data = json.load(file)
-                data.update(json_data)
-                file.seek(0)
-                json.dump(data, file)
-        append_list_as_row(fileExt, dict)
-    elif fileExt.endswith(".xlsx") and method == "r":
-        df_read = pd.read_excel(fileExt)
-        return df_read
-
-    elif fileExt.endswith(".xlsx") and method == "w":
-        book = load_workbook(fileExt)
-        df = pd.DataFrame(dict)
-        wb = pd.ExcelWriter(fileExt, engine='openpyxl')
-        wb.book = load_workbook(fileExt)
-        wb.save()
-        wb.close()
-        return df
-
-def JsonConversion(fileExt,method,CsvToJson):
-    if fileExt.endswith('.csv') and method == "r":
-        df = pd.read_csv(fileExt)
-        df.to_json(CsvToJson)
-        print("read")
-        return df
+from .helper import append_list_as_row, append_list_as_row_json
 
 
+class FileProcess(object):
 
 
+    def read(file_path):
+        try:
+            if file_path.endswith('.csv'):
+                df = pd.read_csv(file_path)
+                return df
+            elif file_path.endswith('.json'):
+                df = pd.read_json(file_path, lines=True)
+                return df
+            elif file_path.endswith(".xlsx"):
+                df = pd.read_excel(file_path)
+                return df
+        except:
+            print("Couldn't read file")
 
+    def write(file_path, mode="", data=None):
+        try:
+            if file_path.endswith('.csv'):
+                append_list_as_row(file_path, mode, data)
+            elif file_path.endswith(".json"):
+                append_list_as_row_json(file_path, mode, data)
+            elif file_path.endswith(".xlsx"):
+                wb = load_workbook(file_path)
+                page = wb.active
+                for info in data:
+                    page.append(info)
+                wb.save(filename=file_path)
+                return wb
+        except:
+            print("Unable to fetch the data")
 
-
-
-
-
-
+    def json_conversion(file_path, csv_to_json):
+        try:
+            if file_path.endswith('.csv'):
+                df = pd.read_csv(file_path)
+                df.to_json(csv_to_json)
+                return df
+        except:
+            print("Unable to read the data")

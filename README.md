@@ -16,57 +16,37 @@ We need to install
 
 We need to import following libraries.
 - pip3 install pandas
-- pip3 install xlsxwriter
 - pip3 install openpyxl
 - pip3 install writer
 
 **Testing the package:**
 
-Create a file to test the package:
+        Run "Python3" in terminal
 
-**Example:**
+**Import the file processing package methods in terminal:**
 
-   "PackageTestingFile.py"
+       from fileprocessing_package import FileProcess
 
-**Import the file processing package in your file:**
+**Add the below command to test the methods**
 
-       from FileProcessingPackage import ReadWriteFile
+If you are Reading/Writting a File:
 
-**Add the below code to test the package**
+Example for CSV File:
 
-If you are Reading a File pass this parameters:
+        FileProcess.read("filepath")
+        FileProcess.write("filepath","a+",[28,'mouri','vizag'])
 
-        ReadWriteFile.fileprocess(file_extension, "r", dict)
+Example for XLSX file:
 
-**Example:**
+        FileProcess.read("filepath")
+        FileProcess.write("filepath","a+",[('vzg',22,45),('hyd',21,56),('mouri',20,60)])
 
-  if you are reading csv file follow this code example:
-     
-        from FileProcessingPackage import ReadWriteFile
-        file_extension ='filename.csv' 
-        dict = [28,'mouritech','hyderabad'] 
-        ReadWriteFile.fileprocess(file_extension, "r", dict)
+Example for XLSX file:
 
-if you are Writing a file pass this parameters:
-
-        ReadWriteFile.fileprocess(file_extension, "w", dict)
-
-**Example:**
-
-  if you are writing csv file follow this code example:
-
-        from FileProcessingPackage import ReadWriteFile
-        file_extension ='filename.csv' 
-        dict = [28,'mouritech','hyderabad'] 
-        ReadWriteFile.fileprocess(file_extension, "w", dict)
-
-**Run your file:**
-
-     "python(filename).py"
+        FileProcess.read("filepath")
+        FileProcess.write("filepath","a+",{"ORIGIN_COUNTRY_NAME":"United States","DEST_COUNTRY_NAME":"Poland","count":62})
 
 
+If you are converting CSV to Json:
 
-
-
-
-
+        FileProcess.json_conversion("filepath","Destinationfilepath")
